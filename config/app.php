@@ -159,6 +159,16 @@ return [
         /*
          * Package Service Providers...
          */
+        Illuminate\Auth\AuthServiceProvider::class,
+        Illuminate\Auth\Passwords\PasswordResetServiceProvider::class,
+        Illuminate\Broadcasting\BroadcastServiceProvider::class,
+        Illuminate\Cache\CacheServiceProvider::class,
+        Illuminate\Cookie\CookieServiceProvider::class,
+        Illuminate\Database\DatabaseServiceProvider::class,
+        Illuminate\Encryption\EncryptionServiceProvider::class,
+        Illuminate\Filesystem\FilesystemServiceProvider::class,
+        Illuminate\Queue\QueueServiceProvider::class,
+        Illuminate\View\ViewServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -168,6 +178,7 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\ViewServiceProvider::class,
     ])->toArray(),
 
     /*
