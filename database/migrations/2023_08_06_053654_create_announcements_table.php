@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('description');
             $table->dateTime('start_at')->nullable()->default(0);
             $table->dateTime('end_at')->nullable()->default(0);
-            $table->foreignId('category_id');
+            $table->foreignId('category_id')->nullable();
             $table->timestamps();
         });
     }

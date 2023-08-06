@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->tinyInteger('payment_type')->nullable()->default(0);
-            $table->tinyInteger('payment_status')->nullable()->default(0);
+            $table->unsignedTinyInteger('payment_type')->nullable()->default(0);
+            $table->unsignedTinyInteger('payment_status')->nullable()->default(0);
             $table->decimal('price', 10, 2);
-            $table->tinyInteger('status')->nullable()->default(0);
+            $table->unsignedTinyInteger('status')->nullable()->default(0);
             $table->foreignId('city_id');
             $table->string('address');
             $table->text('comment')->nullable();

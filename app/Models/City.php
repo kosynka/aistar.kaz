@@ -14,6 +14,9 @@ class City extends Model
         'region',
     ];
 
+    /**
+     * Custom methods
+     */
     public function getFilterableRowsNames(): array
     {
         return [
