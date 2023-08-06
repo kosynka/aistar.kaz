@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\MorphMany;
 
 class Announcement extends Model
 {
@@ -17,10 +18,11 @@ class Announcement extends Model
         'category_id',
     ];
 
-    public function Images(): HasMany
+    /**
+     * Relations
+     */
+    public function images(): MorphMany
     {
-          return $this->hasMany(Image::class);
+        return $this->morphMany(Image::class, 'imageable');
     }
-
-
 }

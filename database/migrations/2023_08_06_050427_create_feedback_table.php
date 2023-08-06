@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('feedback', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id');
+            $table->string('title');
+            $table->longText('text');
+            $table->string('communication_method');
             $table->timestamps();
         });
     }

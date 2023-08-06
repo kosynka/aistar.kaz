@@ -15,4 +15,3 @@ class CartProduct extends Model
         'amount',
     ];
 }
-s

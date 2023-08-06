@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('cart_id');
             $table->foreignId('product_id');
-            $table->decimal('amount',10,2);
+            $table->integer('amount');
             $table->timestamps();
         });
     }
