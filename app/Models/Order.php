@@ -17,7 +17,7 @@ class Order extends Model
         'status',
         'city_id',
         'address',
-        'comment',
+        'comment', 
     ];
 
     
