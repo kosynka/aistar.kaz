@@ -5,8 +5,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['prefix' => 'auth', 'controller' => App\Http\Controllers\Api\AuthController::class], function () {
     Route::post('/login', 'login');
     Route::post('/register', 'register');
-    Route::post('/password/reset', 'passwordReset');
-    Route::post('/password/restore', 'passwordRestore');
+    Route::post('/logout', 'logout');
 });
 
 Route::group(['prefix' => 'cities', 'controller' => App\Http\Controllers\Api\CityController::class], function () {

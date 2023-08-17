@@ -12,6 +12,11 @@ abstract class BaseService implements BaseServiceInterface
     public function __construct(private BaseRepositoryInterface $repository)
     {}
 
+    protected function jsonResponse(mixed $data = [], $status = 200): mixed
+    {
+        return $data + $status;
+    }
+
     public function index(array $params): ?Collection
     {
         $data = $this->repository->index($params);
