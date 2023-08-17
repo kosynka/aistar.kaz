@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Auth\SigninRequest;
+use App\Models\Role;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -19,7 +23,7 @@ class AuthController extends Controller
         return redirect('/login');
     }
 
-    public function signin(LoginRequest $request)
+    public function signin(SigninRequest $request)
     {
         $data = $request->validated();
 

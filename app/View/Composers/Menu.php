@@ -52,24 +52,24 @@ class Menu
     {
         return [
             'Товары' => [
-                route('products') => 'Товары',
+                route('products.index') => 'Товары',
             ],
             'Пользователи' => [
-                route('users') => 'Пользователи',
-                route('reviews') => 'Отзывы',
-                route('feedbacks') => 'Обратная связь',
+                route('users.index') => 'Пользователи',
+                route('reviews.index') => 'Отзывы',
+                route('feedbacks.index') => 'Обратная связь',
             ],
             'Оплата' => [
-                route('orders') => 'Заказы',
+                route('orders.index') => 'Заказы',
             ],
             'Настройки' => [
-                route('announcements') => 'Объявления',
-                route('categories') => 'Категории',
-                route('cities') => 'Города',
+                route('announcements.index') => 'Объявления',
+                route('categories.index') => 'Категории',
+                route('cities.index') => 'Города',
             ],
             'Prosklad' => [
-                route('importProsklad') => 'Импорт',
-                route('exportProsklad') => 'Экспорт',
+                route('import.database') => 'Импорт',
+                route('export.database') => 'Экспорт',
             ],
         ];
     }
