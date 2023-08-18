@@ -23,7 +23,7 @@ class SigninRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'phone' => ['required', 'string', new Phone],
+            'phone' => ['required', 'string'],
             'password' => ['required', 'string'],
         ];
     }

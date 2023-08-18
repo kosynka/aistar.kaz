@@ -10,9 +10,9 @@ class UserController extends Controller
 {
     public function index()
     {
-        $data = User::paginate(25);
+        $data = User::with('city')->paginate(20);
 
-        return view('users.index', compact('data'));
+        return view('admin.users.index', compact('data'));
     }
 
     public function show(string $id)

@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
         DB::table('users')->insert([
             [
                 'fio' => 'Admin',
-                'phone' => '77007007070',
+                'phone' => '87022363206',
                 'password' => Hash::make('hc7ERM2IT4'),
                 'city_id' => 1,
                 'role_id' => 1,

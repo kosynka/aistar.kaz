@@ -27,10 +27,10 @@ class AuthController extends Controller
     {
         $data = $request->validated();
 
-        $adminRole = Role::where('name', 'admin')->first;
+        $adminRole = Role::where('name', 'admin')->first();
         $admin = User::where([
-            'phone', $data['phone'],
-            'role_id', $adminRole->id,
+            'phone' => $data['phone'],
+            'role_id' => $adminRole->id,
         ])->first();
 
         if (is_null($admin)) {

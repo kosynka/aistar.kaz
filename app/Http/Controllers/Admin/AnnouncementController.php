@@ -17,7 +17,7 @@ class AnnouncementController extends Controller
 
     public function create()
     {
-        return view('admin.announcements.create', ['title' => _('admin.create.category')]);
+        return view('admin.announcements.create', ['title' => _('admin.title.announcements.create')]);
     }
 
     public function store(Request $request)

@@ -65,12 +65,12 @@
             @csrf
         
             <div class="form-floating">
-                <input type="tel" class="form-control" name="phone" id="floatingInput" placeholder="77007007070">
+                <input type="tel" class="form-control" name="phone" id="floatingInput" placeholder="87022363206">
                 <label for="floatingInput">Номер телефона</label>
             </div>
 
             <div class="form-floating">
-                <input type="password" class="form-control" name="password" id="floatingPassword" placeholder="Password">
+                <input type="password" class="form-control" name="password" id="floatingPassword" placeholder="hc7ERM2IT4">
                 <label for="floatingPassword">Пароль</label>
             </div>
 
