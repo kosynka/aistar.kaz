@@ -14,35 +14,31 @@
 
         <div class="row" style="display: block;">
             <div class="col-md-12 col-sm-12  ">
-                <div class="x_panel">
-                    <div class="x_content">
-                        <div class="table-responsive">
-                            <table class="table table-striped jambo_table bulk_action">
-                                <thead>
-                                    <tr class="headings">
-                                        <th class="column-title">ID</th>
-                                        <th class="column-title">ФИО</th>
-                                        <th class="column-title">Телефон</th>
-                                        <th class="column-title">Город</th>
-                                    </tr>
-                                </thead>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr class="headings">
+                                <th class="column-title">ID</th>
+                                <th class="column-title">ФИО</th>
+                                <th class="column-title">Телефон</th>
+                                <th class="column-title">Город</th>
+                            </tr>
+                        </thead>
 
-                                <tbody>
-                                    @foreach($data as $item)
-                                        <tr class="even pointer">
-                                            <td class="">{{ $item->id }}</td>
-                                            <td class="">{{ $item->fio }}</td>
-                                            <td class="">{{ $item->phone }}</td>
-                                            <td class="">{{ $item->city->name }}</td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                        <tbody>
+                            @foreach($data as $item)
+                                <tr class="even pointer">
+                                    <td class="">{{ $item->id }}</td>
+                                    <td class="">{{ $item->fio }}</td>
+                                    <td class="">{{ $item->phone }}</td>
+                                    <td class="">{{ $item->city->name }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
 
-                            <div class="d-flex justify-content-center">
-                                {!! $data->links() !!}
-                            </div>
-                        </div>
+                    <div class="d-flex justify-content-center">
+                        {!! $data->links() !!}
                     </div>
                 </div>
             </div>
