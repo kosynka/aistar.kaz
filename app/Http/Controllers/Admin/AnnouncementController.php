@@ -10,14 +10,14 @@ class AnnouncementController extends Controller
 {
     public function index()
     {
-        $announcements = Announcement::all();
+        $data = Announcement::all();
 
-        return view('admin.announcements.index', compact('announcements'));
+        return view('admin.announcements.index', compact('data'));
     }
 
     public function create()
     {
-         return view('admin.announcements.create', ['title' => _('admin.create.category')]);
+        return view('admin.announcements.create', ['title' => _('admin.create.category')]);
     }
 
     public function store(Request $request)
