@@ -16,8 +16,8 @@ class Phone implements ValidationRule
     {
         $countryCode = substr($value, 0, 2);
 
-        if ($countryCode !== '77' || $countryCode !== '87') {
-            $fail('Номер телефона должен начинаться с 7 или 8');
+        if ($countryCode !== '87') {
+            $fail('Номер телефона должен начинаться с 87');
         }
 
         if (strlen($value) !== 11) {

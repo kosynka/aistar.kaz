@@ -4,20 +4,24 @@ namespace App\Services\V1;
 
 use App\Repositories\Contracts\BaseRepositoryInterface;
 use App\Services\Contracts\BaseServiceInterface;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 abstract class BaseService implements BaseServiceInterface
 {
-    public function __construct(private BaseRepositoryInterface $repository)
+    public function __construct(protected BaseRepositoryInterface $repository)
     {}
 
-    protected function jsonResponse(mixed $data = [], $status = 200): mixed
+    protected function result(array $data = [], string $message = 'ok', int $code = 200): array
     {
-        return $data + $status;
+        return [
+            'data' => $data,
+            'message' => $message,
+            'code' => $code,
+        ];
     }
 
-    public function index(array $params): ?Collection
+    public function index(array $params): LengthAwarePaginator
     {
         $data = $this->repository->index($params);
 
@@ -27,6 +31,13 @@ abstract class BaseService implements BaseServiceInterface
 	public function show(int $id): ?Model
     {
         $item = $this->repository->show($id);
+
+        return $item;
+    }
+
+    public function store(array $data): ?Model
+    {
+        $item = $this->repository->store($data);
 
         return $item;
     }

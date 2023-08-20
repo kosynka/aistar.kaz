@@ -3,47 +3,73 @@
 namespace App\Services\V1;
 
 use App\Http\Resources\User\UserResource;
-use App\Repositories\Contracts\AuthRepositoryInterface;
+use App\Repositories\V1\RoleRepository;
+use App\Repositories\V1\UserRepository;
 use App\Services\Contracts\AuthServiceInterface;
 use App\Services\V1\BaseService;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
 
 class AuthService extends BaseService implements AuthServiceInterface
 {
-    public function __construct(private AuthRepositoryInterface $repository)
-    {}
+    private RoleRepository $roleRepository;
 
-    public function login(array $data): ?Model
+    public function __construct(UserRepository $repository)
+    {
+        parent::__construct($repository);
+    }
+
+    public function login(array $data): array
     {
         $user = $this->repository->findByPhone($data['phone']);
 
         if (isset($user)) {
             if (!Hash::check($data['password'], $user->password)) {
-                return $this->jsonResponse([_('user.error.wrong-password')], 401);
+                return $this->result(['message' => __('user.error.wrong-password')], 401);
             }
 
-            $token = $user->createToken($user->phone, ['users'])->accessToken;
+            $token = $user->createToken(
+                name: $user->phone,
+                abilities: ['users'],
+                expiresAt: now()->addDay(),
+                )->plainTextToken;
 
-            return $this->jsonResponse([
+            return $this->result([
                 'token' => $token,
-                'user' => (new UserResource($user)),
+                'user' => new UserResource($user->load('city')),
             ]);
         }
         else {
-            return $this->jsonResponse([_('user.error.wrong-login')], 401);
+            return $this->result(
+                message: __('user.error.wrong-login'),
+                code: 401,
+            );
         }
     }
 
-	public function register(array $data): ?Model
+	public function register(array $data): array
     {
-        $data = $this->repository->register($data);
+        if ($this->repository->findByPhone($data['phone'])) {
+            return $this->result(
+                message: __('user.error.phone-unavailable'),
+                code: 401,
+            );
+        }
 
-        return $this->jsonResponse($data);
+        $data['password'] = Hash::make($data['password']);
+        $data['role_id'] = $this->roleRepository->findRole('user')->id;
+
+        $user = $this->repository->store($data);
+
+        $token = $user->createToken($user->phone, ['users'])->plainTextToken;
+
+        return $this->result([
+            'token' => $token,
+            'user' => new UserResource($user->load('city')),
+        ]);
     }
 
 	public function logout(): void
     {
-        auth('api')->logout();
+        auth()->user()->tokens()->delete();
     }
 }

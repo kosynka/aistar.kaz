@@ -3,15 +3,15 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\City\IndexRequest;
-use App\Http\Resources\City\CityCollection;
-use App\Http\Resources\City\CityResource;
-use App\Services\Contracts\CityServiceInterface;
+use App\Http\Requests\Announcement\IndexRequest;
+use App\Http\Resources\Announcement\AnnouncementCollection;
+use App\Http\Resources\Announcement\AnnouncementResource;
+use App\Services\Contracts\AnnouncementServiceInterface;
 use Illuminate\Http\JsonResponse;
 
-class CityController extends Controller
+class AnnouncementController extends Controller
 {
-    public function __construct(private CityServiceInterface $service)
+    public function __construct(private AnnouncementServiceInterface $service)
     {}
 
     public function index(IndexRequest $request): JsonResponse
@@ -19,7 +19,7 @@ class CityController extends Controller
         $paginatedData = $this->service->index($request->validated());
 
         return response()->json(
-            (new CityCollection($paginatedData)),
+            (new AnnouncementCollection($paginatedData)),
         );
     }
 
@@ -28,7 +28,7 @@ class CityController extends Controller
         $data = $this->service->show($id);
 
         return response()->json(
-            ['data' => new CityResource($data)],
+            ['data' => new AnnouncementResource($data)],
         );
     }
 }
