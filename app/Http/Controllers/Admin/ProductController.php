@@ -8,24 +8,23 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    
     public function index()
     {
-        $products = Product::all();
+        $data = Product::with('category')->paginate(25);
 
-        return view('admin.products.index', compact('products'));
+        return view('admin.products.index', compact('data'));
     }
 
     public function create()
     {
-        return view('admin.products.create',['title'=>_('admin.title.products.create')];
+        return view('admin.products.create', ['title' => _('admin.title.products.create')]);
     }
 
     public function store(Request $request)
     {
         Product::create($request->validate($this->rules));
 
-        return redirect()->route('admin.products.index')->with(['succes'=>_('admin.success.create')]);
+        return redirect()->route('products.index')->with(['succes'=>_('admin.success.create')]);
     }
 
     public function edit(Product $product)
@@ -37,27 +36,26 @@ class ProductController extends Controller
     {
         $product->update($request->validate($this->rules));
 
-        return redirect()->route('admin.products.index')->with(['success' => _('admin.success.update')]);
+        return redirect()->route('products.index')->with(['success' => _('admin.success.update')]);
     }
 
-    public function destroy(string $id)
+    public function destroy(Product $product)
     {
         $product->delete();
 
-        return redirect()->route('admin.products.index')->with(['success' => _('admin.success.destroy')]);
+        return redirect()->route('products.index')->with(['success' => _('admin.success.destroy')]);
     }
 
     private array $rules = [
         'name' => ['required', 'string', 'min:1'],
         'description' => ['required', 'string', 'min:1'],
         'price' => ['required', 'numeric', 'min:1'],
-        'discount_price' => ['required', 'nullable', 'numeric', 'min:1'],
+        'discount_price' => ['nullable', 'numeric', 'min:1'],
         'amount' => ['required', 'integer', 'min:1'],
-        'category_id' => ['required', 'integer', 'min:1', 'exists:categories,id'],
-        'relevance_weight' => ['required','nullable', 'integer', 'min:1'],
-        'rating' => ['required', 'integer', 'nullable', 'min:1'],
-        'prosklad_id' => ['required', 'integer', 'min:1', 'exists:categories,id'],
-        'views_count' => ['required', 'integer', 'nullable', 'min:1'],
-        'views_count' => ['required', 'string', 'unique', 'min:1'],
+        'category_id' => ['nullable', 'integer', 'exists:categories,id'],
+        'has_discount' => ['nullable', 'bool'],
+        'relevance_weight' => ['nullable', 'integer'],
+        'rating' => ['nullable', 'integer', 'min:1'],
+        'prosklad_id' => ['nullable', 'integer'],
     ];
 }

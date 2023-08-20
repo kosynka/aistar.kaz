@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 
 class CityController extends Controller
 {
- 
     public function index()
     {
         $data = City::all();
@@ -18,15 +17,14 @@ class CityController extends Controller
 
     public function create()
     {
-       return view('admin.cities.create',['title'=>_('admin.title.cities.create')];
+        return view('admin.cities.create', ['title'=>_('admin.title.cities.create')]);
     }
 
-   
     public function store(Request $request)
     {
         City::create($request->validate($this->rules));
 
-        return redirect()->route('admin.cities.index')->with(['succes'=>_('admin.success.create')]);
+        return redirect()->route('cities.index')->with(['succes'=>_('admin.success.create')]);
     }
 
     public function edit(City $city)
@@ -38,18 +36,18 @@ class CityController extends Controller
     {
         $city->update($request->validate($this->rules));
 
-        return redirect()->route('admin.cities.index')->with(['success' => _('admin.success.update')]);
+        return redirect()->route('cities.index')->with(['success' => _('admin.success.update')]);
     }
 
-    public function destroy(string $id)
+    public function destroy(City $city)
     {
         $city->delete();
 
-        return redirect()->route('admin.cities.index')->with(['success' => _('admin.success.destroy')]);
+        return redirect()->route('cities.index')->with(['success' => _('admin.success.destroy')]);
     }
 
     private array $rules = [
-        'name' => ['required', 'string'],
-        'region' => ['required', 'string'],
+        'name' => ['required', 'string', 'min:1'],
+        'region' => ['required', 'string', 'min:1'],
     ];
 }
