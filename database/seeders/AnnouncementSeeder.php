@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use App\Models\Announcement;
+use Database\Factories\AnnouncementFactory;
 
 
 class AnnouncementSeeder extends Seeder
@@ -14,23 +16,6 @@ class AnnouncementSeeder extends Seeder
      */
     public function run(): void
     {
-       $data = [
-            [
-                'title' => 'Announcement 1',
-                'description' => 'Description for announcement 1.',
-                'start_at' => now(),
-                'end_at' => now()->addDays(7),
-                'category_id' => 1,
-            ],
-            [
-                'title' => 'Announcement 2',
-                'description' => 'Description for announcement 2.',
-                'start_at' => now(),
-                'end_at' => now()->addDays(14),
-                'category_id' => 2,
-            ],
-        ];
-
-        DB::table('announcements')->insert($data);
+        Announcement::factory()->count(50)->create();
     }
 }
