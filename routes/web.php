@@ -63,4 +63,16 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('announcements', App\Http\Controllers\Admin\AnnouncementController::class)->except([
         'show',
     ]);
+
+    Route::resource('feedbacks', App\Http\Controllers\Admin\FeedbackController::class)->except([
+        'show',
+    ]);
+
+    Route::resource('orders', App\Http\Controllers\Admin\OrderController::class)->except([
+        'show',
+    ]);
+
+    Route::resource('reviews', App\Http\Controllers\Admin\ReviewController::class)->except([
+        'show',
+    ]);
 });

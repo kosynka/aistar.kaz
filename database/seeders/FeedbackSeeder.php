@@ -4,16 +4,16 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Database\Factories\ProductFactory;
-use App\Models\Product;
+use App\Models\Feedback;
+use Database\Factories\FeedbackFactory;
 
-class ProductSeeder extends Seeder
+class FeedbackSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Product::factory()->count(50)->create();
+        Feedback::factory()->count(50)->create();
     }
 }
