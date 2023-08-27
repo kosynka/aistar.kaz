@@ -32,4 +32,15 @@ class Category extends Model
     {
         return $this->hasMany(Category::class, 'parent_id');
     }
+
+    /**
+     * Custom methods
+     */
+    public function getRelationsForLoading(): array
+    {
+        return [
+            'parent',
+            'childs',
+        ];
+    }
 }

@@ -33,4 +33,15 @@ class Order extends Model
     {
         return $this->belongsTo(City::class);
     }
+
+    /**
+     * Custom methods
+     */
+    public function getRelationsForLoading(): array
+    {
+        return [
+            'user',
+            'city',
+        ];
+    }
 }

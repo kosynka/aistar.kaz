@@ -10,6 +10,7 @@ class CityResource extends BaseResource
     public function toArray(Request $request): array
     {
         return [
+            'id' => $this->id,
             'name' => $this->name,
             'region' => $this->region,
         ];

@@ -1,8 +1,6 @@
 <?php
 
-namespace App\Http\Requests\City;
-
-use App\Http\Requests\BaseIndexRequest;
+namespace App\Http\Requests;
 
 class IndexRequest extends BaseIndexRequest
 {

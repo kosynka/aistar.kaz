@@ -6,12 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Product\IndexRequest;
 use App\Http\Resources\Product\ProductCollection;
 use App\Http\Resources\Product\ProductResource;
-use App\Services\Contracts\ProductServiceInterface;
+use App\Services\V1\ProductService;
 use Illuminate\Http\JsonResponse;
 
 class ProductController extends Controller
 {
-    public function __construct(private ProductServiceInterface $service)
+    public function __construct(private ProductService $service)
     {}
 
     public function index(IndexRequest $request): JsonResponse
@@ -23,9 +23,9 @@ class ProductController extends Controller
         );
     }
 
-    public function show(int $id): JsonResponse
+    public function show(int $productId): JsonResponse
     {
-        $data = $this->service->show($id);
+        $data = $this->service->show($productId);
 
         return response()->json(
             ['data' => new ProductResource($data)],

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\City;
+namespace App\Http\Requests\Product;
 
 use App\Http\Requests\BaseIndexRequest;
 
@@ -23,6 +23,7 @@ class IndexRequest extends BaseIndexRequest
     {
         return array_merge(
             $this->baseRules(),
+
             [
                 //
             ]

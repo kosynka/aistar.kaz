@@ -15,9 +15,6 @@ class Review extends Model
         'product_id',
         'title',
         'text',
-    ];
-
-    protected $hidden = [
         'rating',
     ];
 
@@ -32,5 +29,16 @@ class Review extends Model
     public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class);
+    }
+
+    /**
+     * Custom methods
+     */
+    public function getRelationsForLoading(): array
+    {
+        return [
+            'user',
+            'product',
+        ];
     }
 }

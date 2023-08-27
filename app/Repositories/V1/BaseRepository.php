@@ -4,7 +4,6 @@ namespace App\Repositories\V1;
 
 use App\Repositories\Contracts\BaseRepositoryInterface;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -50,10 +49,8 @@ abstract class BaseRepository implements BaseRepositoryInterface
 	{
 		$query = $this->model->query();
 
-        $query->when(isset($params['has_relations']) && $params['has_relations'] == false, function ($query) {
-            foreach($this->model->relationsList() as $relation) {
-                $query->doesntHave($relation);
-            }
+        $query->when(isset($params['with']) && $params['with'] == true, function ($query) {
+            $query->with($this->model->getRelationsForLoading());
         });
 
         $query->when(isset($params['filter']), function ($query) use ($params) {

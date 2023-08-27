@@ -40,7 +40,7 @@ class User extends Authenticatable
 
     public function role(): BelongsTo
     {
-        return $this->belongsTo(role::class);
+        return $this->belongsTo(Role::class);
     }
 
     public function orders(): HasMany
@@ -61,5 +61,17 @@ class User extends Authenticatable
     public function paymentHistories(): HasMany
     {
         return $this->hasMany(PaymentHistory::class);
+    }
+
+    /**
+     * Custom methods
+     */
+    public function getRelationsForLoading(): array
+    {
+        return [
+            'orders',
+            'carts',
+            'paymentHistories',
+        ];
     }
 }

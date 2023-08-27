@@ -30,12 +30,15 @@ Route::group(['prefix' => 'announcements', 'controller' => App\Http\Controllers\
 
 Route::group(['prefix' => 'products', 'controller' => App\Http\Controllers\Api\ProductController::class], function () {
     Route::get('/', 'index');
-    Route::get('/{id}', 'show');
+    
+    Route::group(['prefix' => '{productId}'], function () {
+        Route::get('/', 'show');
 
-    Route::group(['prefix' => 'reviews', 'middleware' => ['auth:api'], 'controller' => App\Http\Controllers\Api\ReviewController::class], function () {
-        Route::get('/', 'index');
-        Route::post('/', 'store');
-        Route::get('/{id}', 'show');
+        Route::group(['prefix' => 'reviews', 'middleware' => ['auth:api'], 'controller' => App\Http\Controllers\Api\ReviewController::class], function () {
+            Route::get('/', 'index');
+            Route::post('/', 'store');
+            Route::get('/{id}', 'show');
+        });
     });
 });
 

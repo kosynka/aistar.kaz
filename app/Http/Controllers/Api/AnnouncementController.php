@@ -3,15 +3,15 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Announcement\IndexRequest;
+use App\Http\Requests\IndexRequest;
 use App\Http\Resources\Announcement\AnnouncementCollection;
 use App\Http\Resources\Announcement\AnnouncementResource;
-use App\Services\Contracts\AnnouncementServiceInterface;
+use App\Services\V1\AnnouncementService;
 use Illuminate\Http\JsonResponse;
 
 class AnnouncementController extends Controller
 {
-    public function __construct(private AnnouncementServiceInterface $service)
+    public function __construct(private AnnouncementService $service)
     {}
 
     public function index(IndexRequest $request): JsonResponse
