@@ -13,8 +13,9 @@ class AuthService extends BaseService implements AuthServiceInterface
 {
     private RoleRepository $roleRepository;
 
-    public function __construct(UserRepository $repository)
+    public function __construct(UserRepository $repository, RoleRepository $roleRepository)
     {
+        $this->roleRepository = $roleRepository;
         parent::__construct($repository);
     }
 
