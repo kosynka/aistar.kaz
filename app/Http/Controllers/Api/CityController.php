@@ -28,7 +28,7 @@ class CityController extends Controller
         $data = $this->service->show($id);
 
         return response()->json(
-            (new CityResource($data)),
+            ['data' => new CityResource($data)],
         );
     }
 }

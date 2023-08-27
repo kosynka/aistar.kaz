@@ -52,24 +52,64 @@ class Menu
     {
         return [
             'Товары' => [
-                route('products') => 'Товары',
+                [
+                    'name' => 'Товары',
+                    'logo' => 'bx-basket',
+                    'route' => route('products.index'),
+                ],
             ],
             'Пользователи' => [
-                route('users') => 'Пользователи',
-                route('reviews') => 'Отзывы',
-                route('feedbacks') => 'Обратная связь',
+                [
+                    'name' => 'Пользователи',
+                    'logo' => 'bx-user',
+                    'route' => route('users.index'),
+                ],
+                [
+                    'name' => 'Отзывы',
+                    'logo' => 'bx-message-alt-detail',
+                    'route' => route('reviews.index'),
+                ],
+                [
+                    'name' => 'Обратная связь',
+                    'logo' => 'bx-message-rounded-dots',
+                    'route' => route('feedbacks.index'),
+                ],
             ],
             'Оплата' => [
-                route('orders') => 'Заказы',
+                [
+                    'name' => 'Заказы',
+                    'logo' => 'bx-wallet',
+                    'route' => route('orders.index'),
+                ],
             ],
             'Настройки' => [
-                route('announcements') => 'Объявления',
-                route('categories') => 'Категории',
-                route('cities') => 'Города',
+                [
+                    'name' => 'Объявления',
+                    'logo' => 'bx-cog',
+                    'route' => route('announcements.index'),
+                ],
+                [
+                    'name' => 'Категории',
+                    'logo' => 'bx-category',
+                    'route' => route('categories.index'),
+                ],
+                [
+                    'name' => 'Города',
+                    'logo' => 'bx-city',
+                    'route' => route('cities.index'),
+                ],
             ],
             'Prosklad' => [
-                route('importProsklad') => 'Импорт',
-                route('exportProsklad') => 'Экспорт',
+                [
+                    'name' => 'Импорт',
+                    'logo' => 'bx-data',
+                    'route' => route('import.database'),
+                ],
+                [
+                    'name' => 'Экспорт',
+                    'logo' => 'bx-data',
+                    'route' => route('export.database'),
+                ],
             ],
         ];
     }

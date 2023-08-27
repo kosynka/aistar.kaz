@@ -1,59 +1,43 @@
-<!-- jQuery -->
-<script src="/vendors/jquery/dist/jquery.min.js"></script>
-<!-- Bootstrap -->
-<script src="/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-<!-- FastClick -->
-<script src="/vendors/fastclick/lib/fastclick.js"></script>
-<!-- NProgress -->
-<script src="/vendors/nprogress/nprogress.js"></script>
-<!-- Chart.js -->
-<script src="/vendors/Chart.js/dist/Chart.min.js"></script>
-<!-- gauge.js -->
-<script src="/vendors/gauge.js/dist/gauge.min.js"></script>
-<!-- bootstrap-progressbar -->
-<script src="/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-<!-- iCheck -->
-<script src="/vendors/iCheck/icheck.min.js"></script>
-<!-- Skycons -->
-<script src="/vendors/skycons/skycons.js"></script>
-<!-- Flot -->
-<script src="/vendors/Flot/jquery.flot.js"></script>
-<script src="/vendors/Flot/jquery.flot.pie.js"></script>
-<script src="/vendors/Flot/jquery.flot.time.js"></script>
-<script src="/vendors/Flot/jquery.flot.stack.js"></script>
-<script src="/vendors/Flot/jquery.flot.resize.js"></script>
-<!-- Flot plugins -->
-<script src="/vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
-<script src="/vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
-<script src="/vendors/flot.curvedlines/curvedLines.js"></script>
-<!-- DateJS -->
-<script src="/vendors/DateJS/build/date.js"></script>
-<!-- JQVMap -->
-<script src="/vendors/jqvmap/dist/jquery.vmap.js"></script>
-<script src="/vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
-<script src="/vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
-<!-- bootstrap-daterangepicker -->
-<script src="/vendors/moment/min/moment.min.js"></script>
-<script src="/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
-<!-- Select2 -->
-<script src="/vendors/select2/dist/js/select2.full.min.js"></script>
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"
+></script>
 
-<script src="/vendors/switchery/dist/switchery.min.js"></script>
-<!-- bootstrap-wysiwyg -->
-<script src="/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
-<script src="/vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
-<script src="/vendors/google-code-prettify/src/prettify.js"></script>
-<!-- jQuery Tags Input -->
-<script src="/vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
-<!-- Parsley -->
-<script src="/vendors/parsleyjs/dist/parsley.min.js"></script>
-<!-- Autosize -->
-<script src="/vendors/autosize/dist/autosize.min.js"></script>
-<!-- jQuery autocomplete -->
-<script src="/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
-<!-- starrr -->
-<script src="/vendors/starrr/dist/starrr.js"></script>
+<script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function (event) {
+    const showNavbar = (toggleId, navId, bodyId, headerId) => {
+        const toggle = document.getElementById(toggleId),
+        nav = document.getElementById(navId),
+        bodypd = document.getElementById(bodyId),
+        headerpd = document.getElementById(headerId);
 
-<!-- Custom Theme Scripts -->
-<script src="/build/js/custom.min.js"></script>
+        // Validate that all variables exist
+        if (toggle && nav && bodypd && headerpd) {
+        toggle.addEventListener("click", () => {
+            // show navbar
+            nav.classList.toggle("show");
+            // change icon
+            toggle.classList.toggle("bx-x");
+            // add padding to body
+            bodypd.classList.toggle("body-pd");
+            // add padding to header
+            headerpd.classList.toggle("body-pd");
+        });
+        }
+    };
 
+    showNavbar("header-toggle", "nav-bar", "body-pd", "header");
+
+    /*===== LINK ACTIVE =====*/
+    const linkColor = document.querySelectorAll(".nav_link");
+
+    function colorLink() {
+        if (linkColor) {
+        linkColor.forEach((l) => l.classList.remove("active"));
+        this.classList.add("active");
+        }
+    }
+    linkColor.forEach((l) => l.addEventListener("click", colorLink));
+    });
+</script>

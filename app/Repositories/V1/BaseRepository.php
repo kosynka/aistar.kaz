@@ -6,11 +6,11 @@ use App\Repositories\Contracts\BaseRepositoryInterface;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 abstract class BaseRepository implements BaseRepositoryInterface
 {
-	public function __construct(private Model $model)
-    {}
+    public function __construct(protected Model $model) {}
 
 	protected function applyFilter(Builder $query, string $text, array $fields): Builder
     {
@@ -46,7 +46,7 @@ abstract class BaseRepository implements BaseRepositoryInterface
 		);
     }
 
-	public function index(array $params): ?Collection
+	public function index(array $params): LengthAwarePaginator
 	{
 		$query = $this->model->query();
 
@@ -62,17 +62,28 @@ abstract class BaseRepository implements BaseRepositoryInterface
             ]);
         });
 
-        if (isset($params['per_page']) || isset($params['page'])) {
-            $query = $this->applyPagination($query, $params);
+        $data = $this->applyPagination($query, $params);
 
-            return $query;
-        }
-
-        return $query->get();
+        return $data;
 	}
 
 	public function show(int $id): ?Model
 	{
-		return $this->model::findOrFail($id);
+		return $this->model->findOrFail($id);
 	}
+
+    public function store(array $data): ?Model
+	{
+		return $this->model->create($data);
+	}
+
+    public function update(Model $model, array $data): bool
+    {
+        return $model->update($data);
+    }
+
+    public function destroy(Model $model): bool|null
+    {
+        return $model->delete();
+    }
 }

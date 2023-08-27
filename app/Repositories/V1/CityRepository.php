@@ -2,10 +2,12 @@
 
 namespace App\Repositories\V1;
 
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
+use App\Models\City;
 
-interface CityRepository extends BaseRepository
+class CityRepository extends BaseRepository
 {
-	//
+	public function __construct(City $model)
+	{
+		parent::__construct($model);
+	}
 }
