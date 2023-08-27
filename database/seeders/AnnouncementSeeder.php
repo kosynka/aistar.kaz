@@ -4,16 +4,18 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Database\Factories\ProductFactory;
-use App\Models\Product;
+use Illuminate\Support\Facades\DB;
+use App\Models\Announcement;
+use Database\Factories\AnnouncementFactory;
 
-class ProductSeeder extends Seeder
+
+class AnnouncementSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        Product::factory()->count(50)->create();
+        Announcement::factory()->count(50)->create();
     }
 }
