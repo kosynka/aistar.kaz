@@ -19,13 +19,19 @@ class Cart extends Model
     /**
      * Relations
      */
-    public function cartProducts(): HasMany
+    public function products(): HasMany
     {
         return $this->hasMany(CartProduct::class);
     }
 
-    public function products(): HasMany
+    /**
+     * Custom methods
+     */
+    public function getRelationsForLoading(): array
     {
-        return $this->hasMany(CartProduct::class);
+        return [
+            'order',
+            'products',
+        ];
     }
 }

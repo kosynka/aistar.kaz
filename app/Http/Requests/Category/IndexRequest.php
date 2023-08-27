@@ -2,16 +2,16 @@
 
 namespace App\Http\Requests\Category;
 
-use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\BaseIndexRequest;
 
-class IndexRequest extends FormRequest
+class IndexRequest extends BaseIndexRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +21,11 @@ class IndexRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            //
-        ];
+        return array_merge(
+            $this->baseRules(),
+            [
+                //
+            ]
+        );
     }
 }

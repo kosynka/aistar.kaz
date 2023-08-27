@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests\City;
+namespace App\Http\Requests\Review;
 
-use App\Http\Requests\BaseIndexRequest;
+use Illuminate\Foundation\Http\FormRequest;
 
-class IndexRequest extends BaseIndexRequest
+class StoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,11 +21,10 @@ class IndexRequest extends BaseIndexRequest
      */
     public function rules(): array
     {
-        return array_merge(
-            $this->baseRules(),
-            [
-                //
-            ]
-        );
+        return [
+            'title' => ['nullable', 'string', 'min:1'],
+            'text' => ['nullable', 'string', 'min:1'],
+            'rating' => ['required', 'integer', 'min:1', 'max:5'],
+        ];
     }
 }

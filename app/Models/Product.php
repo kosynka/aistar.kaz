@@ -41,4 +41,15 @@ class Product extends Model
     {
         return $this->morphMany(Image::class, 'imageable');
     }
+
+    /**
+     * Custom methods
+     */
+    public function getRelationsForLoading(): array
+    {
+        return [
+            'category',
+            'images',
+        ];
+    }
 }

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\City;
+namespace App\Http\Requests\Review;
 
 use App\Http\Requests\BaseIndexRequest;
 
