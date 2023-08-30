@@ -17,37 +17,38 @@ class CategoryController extends Controller
 
     public function create()
     {
-        return view('admin.categories.create', ['title' => _('admin.title.categories.create')]);
+        return view('admin.categories.create', ['title' => __('admin.title.categories.create')]);
     }
 
     public function store(Request $request)
     {
         Category::create($request->validate($this->rules));
 
-        return redirect()->route('categories.index')->with(['success' => _('admin.success.create')]);
+        return redirect()->route('admin.categories.index')->with(['success' => __('admin.success.create')]);
     }
 
     public function edit(Category $category)
     {
-        return view('admin.categories.create', compact('category'));
+        return view('admin.categories.edit', compact('category'));
     }
 
     public function update(Category $category, Request $request)
     {
         $category->update($request->validate($this->rules));
 
-        return redirect()->route('categories.index')->with(['success' => _('admin.success.update')]);
+        return redirect()->route('admin.categories.index')->with(['success' => __('admin.success.update')]);
     }
 
     public function destroy(Category $category)
     {
         $category->delete();
 
-        return redirect()->route('categories.index')->with(['success' => _('admin.success.destroy')]);
+        return redirect()->route('admin.categories.index')->with(['success' => __('admin.success.destroy')]);
     }
 
     private array $rules = [
         'name' => ['required', 'string', 'between:2,255'],
         'parent_id' => ['nullable', 'integer', 'exists:categories,id'],
+        'level' => ['nullable', 'integer'],
     ];
 }
