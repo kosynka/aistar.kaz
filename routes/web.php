@@ -75,4 +75,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::resource('reviews', App\Http\Controllers\Admin\ReviewController::class)->except([
         'show',
     ]);
+
+    Route::get('categories/create', [App\Http\Controllers\Admin\CategoryController::class, 'create'])->name('categories.create');
+    Route::get('categories/{category}/edit', [App\Http\Controllers\Admin\CategoryController::class, 'edit'])->name('categories.edit');
 });
