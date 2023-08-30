@@ -8,8 +8,8 @@ Route::group(['prefix' => 'auth', 'controller' => App\Http\Controllers\Api\AuthC
     Route::post('/logout', 'logout')->middleware('auth:sanctum');
 
     Route::group(['prefix' => 'profile'], function () {
-        Route::post('/show', 'showProfile');
-        Route::post('/delete', 'destroyProfile');
+        Route::get('/show', 'showProfile');
+        Route::delete('/delete', 'destroyProfile');
     });
 });
 

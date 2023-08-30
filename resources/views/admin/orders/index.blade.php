@@ -18,12 +18,12 @@
                         <thead>
                             <tr class="headings">
                                 <th class="column-title">ID</th>
-                                <th class="column-title">ID Пользователя</th>
+                                <th class="column-title">Пользователь</th>
                                 <th class="column-title">Тип оплаты</th>
                                 <th class="column-title">Статус оплаты</th>
                                 <th class="column-title">Цена</th>
                                 <th class="column-title">Статус заказа</th>
-                                <th class="column-title">ID Города</th>
+                                <th class="column-title">Город</th>
                                 <th class="column-title">Адрес</th>
                                 <th class="column-title">Комментарий</th>
                             </tr>
@@ -33,18 +33,22 @@
                             @foreach($data as $item)
                                 <tr class="even pointer">
                                     <td>{{ $item->id }}</td>
-                                    <td>{{ $item->user_id }}</td>
-                                    <td>{{ $item->payment_type }}</td>
-                                    <td>{{ $item->payment_status }}</td>
+                                    <td>{{ $item->user->fio }}</td>
+                                    <td>{{ $item->getPaymentType() }}</td>
+                                    <td>{{ $item->getPaymentStatus() }}</td>
                                     <td>{{ $item->price }}</td>
-                                    <td>{{ $item->status }}</td>
-                                    <td>{{ $item->city_id }}</td>
+                                    <td>{{ $item->getStatus() }}</td>
+                                    <td>{{ $item->city?-name }}</td>
                                     <td>{{ $item->address }}</td>
                                     <td>{{ $item->comment }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
+
+                    <div class="d-flex justify-content-center">
+                        {!! $data->links() !!}
+                    </div>
                 </div>
             </div>
         </div>

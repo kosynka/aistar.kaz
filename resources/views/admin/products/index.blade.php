@@ -20,14 +20,11 @@
                                 <th class="column-title">ID</th>
                                 <th class="column-title">Название</th>
                                 <th class="column-title">Описание</th>
-                                <th class="column-title">Идентификатор</th>
-                                <th class="column-title">Цена</th>
-                                <th class="column-title">Цена со скидкой</th>
-                                <th class="column-title">Количество</th>
-                                <th class="column-title">Идентификатор категории</th>
-                                <th class="column-title">Идентификатор просклада</th>
-                                <th class="column-title">Имеет скидку</th>
-                                <th class="column-title">Вес актуальности</th>
+                                <th class="column-title">Цена, тг</th>
+                                <th class="column-title">Количество, шт</th>
+                                <th class="column-title">Категория</th>
+                                <th class="column-title">Есть скидка?</th>
+                                <th class="column-title">Актуальность</th>
                             </tr>
                         </thead>
 
@@ -37,18 +34,19 @@
                                     <td>{{ $item->id }}</td>
                                     <td>{{ $item->name }}</td>
                                     <td>{{ $item->description }}</td>
-                                    <td>{{ $item->slug }}</td>
                                     <td>{{ $item->price }}</td>
-                                    <td>{{ $item->discount_price }}</td>
                                     <td>{{ $item->amount }}</td>
-                                    <td>{{ $item->category_id }}</td>
-                                    <td>{{ $item->prosklad_id }}</td>
-                                    <td>{{ $item->has_discount }}</td>
+                                    <td>{{ $item->category?->name }}</td>
+                                    <td>{{ $item->has_discount ? 'да' : '-' }}</td>
                                     <td>{{ $item->relevance_weight }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
+
+                    <div class="d-flex justify-content-center">
+                        {!! $data->links() !!}
+                    </div>
                 </div>
             </div>
         </div>

@@ -22,7 +22,6 @@ class Announcement extends Model
     /**
      * Relations
      */
-
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
