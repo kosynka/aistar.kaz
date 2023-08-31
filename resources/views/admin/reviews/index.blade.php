@@ -7,7 +7,7 @@
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Список продуктов</h3>
+                <h3>Список отзывов</h3>
             </div>
         </div>
 
@@ -18,8 +18,8 @@
                         <thead>
                             <tr class="headings">
                                 <th class="column-title">ID</th>
-                                <th class="column-title">ID Пользователя</th>
-                                <th class="column-title">ID Продукта</th>
+                                <th class="column-title">Пользователь</th>
+                                <th class="column-title">Продукт</th>
                                 <th class="column-title">Заголовок</th>
                                 <th class="column-title">Текст</th>
                             </tr>
@@ -29,18 +29,21 @@
                             @foreach($data as $item)
                                 <tr class="even pointer">
                                     <td>{{ $item->id }}</td>
-                                    <td>{{ $item->user_id }}</td>
-                                    <td>{{ $item->product_id }}</td>
+                                    <td>{{ $item->user->fio }}</td>
+                                    <td>{{ $item->product?->title }}</td>
                                     <td>{{ $item->title }}</td>
                                     <td>{{ $item->text }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
+
+                    <div class="d-flex justify-content-center">
+                        {!! $data->links() !!}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 @endsection
-

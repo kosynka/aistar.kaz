@@ -21,11 +21,8 @@ class ProductFactory extends Factory
             'description' => $this->faker->paragraph,
             'slug' => $this->faker->slug,
             'price' => $this->faker->randomFloat(2, 10, 1000),
-            'discount_price' => $this->faker->randomFloat(2, 5, 500),
             'amount' => $this->faker->numberBetween(0, 100),
-            'category_id' => $this->faker->numberBetween(1, 10),
-            'prosklad_id' => $this->faker->numberBetween(1, 5),
-            'has_discount' => $this->faker->boolean,
+            'category_id' => $this->faker->numberBetween(1, 3),
             'relevance_weight' => $this->faker->numberBetween(1, 100),
         ];
     }

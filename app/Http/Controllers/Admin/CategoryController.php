@@ -10,40 +10,55 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $data = Category::all();
+        $data = Category::paginate(25);
 
         return view('admin.categories.index', compact('data'));
     }
 
     public function create()
     {
-        return view('admin.categories.create', ['title' => _('admin.title.categories.create')]);
+        $categories = Category::all();
+
+        return view('admin.categories.form', [
+            'title' => 'Создание',
+            'categories' => $categories,
+            'method' => 'POST',
+            'route' => route('categories.store'),
+        ]);
     }
 
     public function store(Request $request)
     {
         Category::create($request->validate($this->rules));
 
-        return redirect()->route('categories.index')->with(['success' => _('admin.success.create')]);
+        return redirect()->route('categories.index')->with(['success' => 'Категория успешно создана']);
     }
 
     public function edit(Category $category)
     {
-        return view('admin.categories.create', compact('category'));
+        $categories = Category::all();
+
+        return view('admin.categories.form', [
+            'title' => 'Редактирование',
+            'category' => $category,
+            'categories' => $categories,
+            'method' => 'PUT',
+            'route' => route('categories.update', $category->id)
+        ]);
     }
 
     public function update(Category $category, Request $request)
     {
         $category->update($request->validate($this->rules));
 
-        return redirect()->route('categories.index')->with(['success' => _('admin.success.update')]);
+        return redirect()->route('categories.index')->with(['success' => 'Категория успешно отредактирована']);
     }
 
     public function destroy(Category $category)
     {
         $category->delete();
 
-        return redirect()->route('categories.index')->with(['success' => _('admin.success.destroy')]);
+        return redirect()->route('categories.index')->with(['success' => 'Категория успешно удалена']);
     }
 
     private array $rules = [

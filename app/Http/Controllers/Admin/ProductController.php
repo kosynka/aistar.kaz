@@ -10,7 +10,7 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $data = Product::with('category')->paginate(25);
+        $data = Product::with('category')->orderBy('relevance_weight', 'desc')->orderBy('id')->paginate(25);
 
         return view('admin.products.index', compact('data'));
     }

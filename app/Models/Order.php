@@ -44,4 +44,40 @@ class Order extends Model
             'city',
         ];
     }
+
+    public function getPaymentType(): string
+    {
+        $types = [
+            0 => 'не указано',
+            1 => 'карта',
+            2 => 'наличная',
+        ];
+
+        return $types[$this->attributes['payment_type']];
+    }
+
+    public function getPaymentStatus(): string
+    {
+        $types = [
+            0 => 'не указано',
+            1 => 'оплачено',
+            2 => 'не оплачено',
+        ];
+
+        return $types[$this->attributes['payment_status']];
+    }
+
+    public function getStatus(): string
+    {
+        $types = [
+            0 => 'не указано',
+            1 => 'создан',
+            2 => 'в процессе',
+            3 => 'доставляется',
+            4 => 'доставлено',
+            5 => 'отменено',
+        ];
+
+        return $types[$this->attributes['payment_status']];
+    }
 }

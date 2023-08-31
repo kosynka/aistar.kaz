@@ -18,7 +18,7 @@
                         <thead>
                             <tr class="headings">
                                 <th class="column-title">ID</th>
-                                <th class="column-title">ID Пользователя</th>
+                                <th class="column-title">Пользователь</th>
                                 <th class="column-title">Заголовок</th>
                                 <th class="column-title">Текст</th>
                                 <th class="column-title">Способ связи</th>
@@ -29,7 +29,7 @@
                             @foreach($data as $item)
                                 <tr class="even pointer">
                                     <td>{{ $item->id }}</td>
-                                    <td>{{ $item->user_id }}</td>
+                                    <td>{{ $item->user->fio }}</td>
                                     <td>{{ $item->title }}</td>
                                     <td>{{ $item->text }}</td>
                                     <td>{{ $item->communication_method }}</td>
@@ -37,6 +37,10 @@
                             @endforeach
                         </tbody>
                     </table>
+
+                    <div class="d-flex justify-content-center">
+                        {!! $data->links() !!}
+                    </div>
                 </div>
             </div>
         </div>
