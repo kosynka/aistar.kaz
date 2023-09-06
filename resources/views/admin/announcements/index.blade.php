@@ -21,6 +21,9 @@
                                 <th class="column-title">ID</th>
                                 <th class="column-title">Заголовок</th>
                                 <th class="column-title">Описание</th>
+                                <th class="column-title">Активен от</th>
+                                <th class="column-title">Активен до</th>
+                                <th class="column-title">Катеогория</th>
                             </tr>
                         </thead>
 
@@ -32,10 +35,15 @@
                                     <td class="">{{ $item->description }}</td>
                                     <td class="">{{ $item->start_at }}</td>
                                     <td class="">{{ $item->end_at }}</td>
+                                    <td class="">{{ $item->category?->name }}</td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
+
+                    <div class="d-flex justify-content-center">
+                        {!! $data->links() !!}
+                    </div>
                 </div>
             </div>
         </div>

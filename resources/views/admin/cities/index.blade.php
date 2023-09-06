@@ -19,7 +19,7 @@
                         <thead>
                             <tr class="headings">
                                 <th class="column-title">ID</th>
-                                <th class="column-title">Называние</th>
+                                <th class="column-title">Название</th>
                                 <th class="column-title">Регион</th>
                             </tr>
                         </thead>

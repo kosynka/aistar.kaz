@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -15,19 +14,16 @@ class CategorySeeder extends Seeder
     {
         $data = [
             [
-                'name' => 'Category 1',
-                'parent_id' => null,
-                'level' => 1,
+                'name' => 'Дрели',
+                'parent_id' => 0,
             ],
             [
-                'name' => 'Category 2',
-                'parent_id' => 1,
-                'level' => 2,
+                'name' => 'Откосы',
+                'parent_id' => 0,
             ],
             [
-                'name' => 'Category 3',
-                'parent_id' => 2,
-                'level' => 3,
+                'name' => 'Полы',
+                'parent_id' => 0,
             ],
             
         ];

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->unsignedInteger('discount_price')->nullable();
             $table->unsignedInteger('amount');
             $table->foreignId('category_id');
-            $table->foreignId('prosklad_id');
+            $table->foreignId('prosklad_id')->nullable();
             $table->boolean('has_discount')->nullable()->default(false);
             $table->unsignedInteger('relevance_weight')->nullable();
             $table->unsignedInteger('views_count')->nullable();

@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->foreignId('parent_id')->nullable()->default(0);
-            $table->unsignedTinyInteger('level');
             $table->timestamps();
         });
     }
