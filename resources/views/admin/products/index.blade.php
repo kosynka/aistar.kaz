@@ -9,6 +9,7 @@
             <div class="title_left">
                 <h3>Список продуктов</h3>
             </div>
+            @include('parts.buttons.create', ['route' => 'products'])
         </div>
 
         <div class="row" style="display: block;">
@@ -39,6 +40,10 @@
                                     <td>{{ $item->category?->name }}</td>
                                     <td>{{ $item->has_discount ? 'да' : '-' }}</td>
                                     <td>{{ $item->relevance_weight }}</td>
+                                    <td class="">
+                                        @include('parts.buttons.edit', ['route' => 'products'])
+                                        @include('parts.buttons.destroy', ['route' => 'products'])
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

@@ -10,6 +10,7 @@
             <div class="title_left">
                 <h3>Список Объявление</small></h3>
             </div>
+            @include('parts.buttons.create', ['route' => 'announcements'])
         </div>
 
         <div class="row" style="display: block;">
@@ -36,6 +37,9 @@
                                     <td class="">{{ $item->start_at }}</td>
                                     <td class="">{{ $item->end_at }}</td>
                                     <td class="">{{ $item->category?->name }}</td>
+                                    <td class="">
+                                        @include('parts.buttons.edit', ['route' => 'announcements'])
+                                        @include('parts.buttons.destroy', ['route' => 'announcements'])
                                 </tr>
                             @endforeach
                         </tbody>

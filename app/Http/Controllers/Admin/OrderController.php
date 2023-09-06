@@ -23,7 +23,14 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        $Orders = Order::all();
+
+        return view('admin.categories.form', [
+            'title' => 'Создание',
+            'categories' => $Orders,
+            'method' => 'POST',
+            'route' => route('Orders.store'),
+        ]);
     }
 
     /**
@@ -31,38 +38,45 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Order::create($request->validate($this->rules));
+
+        return redirect()->route('Orders.index')->with(['success' => 'Заказ успешно создана']);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Order $Orders)
     {
-        //
+        $Orders = Order::all();
+
+        return view('admin.Orders.form', [
+            'title' => 'Редактирование',
+            'category' => $Orders,
+            'categories' => $Orders,
+            'method' => 'PUT',
+            'route' => route('Orders.update', $Orders->id)
+        ]); 
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Order $Orders, Request $request)
     {
-        //
+        $Orders->update($request->validate($this->rules));
+
+        return redirect()->route('categories.index')->with(['success' => 'Заказ успешно отредактирована']);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Order $Orders)
     {
-        //
+        $Orders->delete();
+
+        return redirect()->route('Orders.index')->with(['success' => 'Заказ успешно удалена']);
     }
 }

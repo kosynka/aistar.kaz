@@ -10,6 +10,7 @@
             <div class="title_left">
                 <h3>Список пользователей</small></h3>
             </div>
+            @include('parts.buttons.create', ['route' => 'cities'])
         </div>
 
         <div class="row" style="display: block;">
@@ -30,6 +31,10 @@
                                     <td class="">{{ $item->id }}</td>
                                     <td class="">{{ $item->name }}</td>
                                     <td class="">{{ $item->region }}</td>
+                                    <td class="">
+                                    @include('parts.buttons.edit', ['route' => 'cities'])
+                                    @include('parts.buttons.destroy', ['route' => 'cities'])
+                                </td>
                                 </tr>
                             @endforeach
                         </tbody>

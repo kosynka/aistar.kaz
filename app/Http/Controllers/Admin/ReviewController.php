@@ -13,7 +13,7 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        $data = Review::all();
+        $data = Review::paginate(25);
 
         return view('admin.reviews.index', compact('data'));
     }
@@ -23,7 +23,14 @@ class ReviewController extends Controller
      */
     public function create()
     {
-        //
+        $reviews = Review::all();
+
+        return view('admin.reviews.form', [
+            'title' => 'Создание',
+            'reviews' => $reviews,
+            'method' => 'POST',
+            'route' => route('reviews.store'),
+        ]);
     }
 
     /**
@@ -31,38 +38,51 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        Review::create($request->validate($this->rules));
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
+        return redirect()->route('$reviews.index')->with(['success' => 'Отзыв успешно создана']);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Review $review)
     {
-        //
+        $reviews = Review::all();
+
+        return view('admin.reviews.form', [
+            'title' => 'Редактирование',
+            'review' => $review,
+            'reviews' => $reviews,
+            'method' => 'PUT',
+            'route' => route('reviews.update', $review->id)
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Review $review, Request $request)
     {
-        //
+        $review->update($request->validate($this->rules));
+
+        return redirect()->route('reviews.index')->with(['success' => 'Отзыв успешно отредактирована']);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Review $review)
     {
-        //
+        $review->delete();
+
+        return redirect()->route('reviews.index')->with(['success' => 'Отзыв успешно удалена']);
     }
+
+    private array $rules = [
+        'user_id' => ['required', 'integer', 'exists:users,id'],
+        'title' => ['required', 'string', 'max:255'],
+        'text' => ['required', 'string'],
+        'rating' => ['required', 'integer', 'min:1', 'max:5'],
+    ];
 }
