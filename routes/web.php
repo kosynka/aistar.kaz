@@ -30,12 +30,10 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::group(['prefix' => 'reviews', 'controller' => App\Http\Controllers\Admin\ReviewController::class], function () {
         Route::get('/', 'index')->name('reviews.index');
-        Route::get('{id}', 'show')->name('reviews.show');
     });
 
     Route::group(['prefix' => 'feedbacks', 'controller' => App\Http\Controllers\Admin\FeedbackController::class], function () {
         Route::get('/', 'index')->name('feedbacks.index');
-        Route::get('{id}', 'show')->name('feedbacks.show');
     });
 
     Route::group(['prefix' => 'orders', 'controller' => App\Http\Controllers\Admin\OrderController::class], function () {
@@ -78,4 +76,22 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
 
     Route::get('categories/create', [App\Http\Controllers\Admin\CategoryController::class, 'create'])->name('categories.create');
     Route::get('categories/{category}/edit', [App\Http\Controllers\Admin\CategoryController::class, 'edit'])->name('categories.edit');
+
+    Route::get('feedbacks/create', [App\Http\Controllers\Admin\FeedbackController::class, 'create'])->name('feedbacks.create');
+    Route::get('feedbacks/{feedback}/edit', [App\Http\Controllers\Admin\FeedbackController::class, 'edit'])->name('feedbacks.edit');
+
+    Route::get('cities/create', [App\Http\Controllers\Admin\CityController::class, 'create'])->name('cities.create');
+    Route::get('cities/{city}/edit', [App\Http\Controllers\Admin\CityController::class, 'edit'])->name('cities.edit');
+
+    Route::get('reviews/create', [App\Http\Controllers\Admin\ReviewController::class, 'create'])->name('reviews.create');
+    Route::get('reviews/{reviews}/edit', [App\Http\Controllers\Admin\ReviewController::class, 'edit'])->name('reviews.edit');
+
+    Route::get('announcements/create', [App\Http\Controllers\Admin\AnnouncementController::class, 'create'])->name('announcements.create');
+    Route::get('announcements/{announcement}/edit', [App\Http\Controllers\Admin\AnnouncementController::class, 'edit'])->name('announcements.edit');
+
+    Route::get('products/create', [App\Http\Controllers\Admin\ProductController::class, 'create'])->name('products.create');
+    Route::get('products/{products}/edit', [App\Http\Controllers\Admin\ProductController::class, 'edit'])->name('products.edit');
+
+    Route::get('users/create', [App\Http\Controllers\Admin\UserController::class, 'create'])->name('users.create');
+    Route::get('users/{users}/edit', [App\Http\Controllers\Admin\UserController::class, 'edit'])->name('users.edit');
 });

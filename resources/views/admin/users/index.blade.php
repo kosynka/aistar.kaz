@@ -10,6 +10,7 @@
             <div class="title_left">
                 <h3>Список пользователей</small></h3>
             </div>
+             @include('parts.buttons.create', ['route' => 'users'])
         </div>
 
         <div class="row" style="display: block;">
@@ -31,7 +32,12 @@
                                     <td class="">{{ $item->id }}</td>
                                     <td class="">{{ $item->fio }}</td>
                                     <td class="">{{ $item->phone }}</td>
-                                    <td class="">{{ $item->city->name }}</td>
+                                    <td class="">{{ $item->role }}</td>
+                                    <td class="">{{ $item->city ? $item->city->name : 'Не указано' }}</td>
+                                    <td class="">
+                                        @include('parts.buttons.edit', ['route' => 'users'])
+                                        @include('parts.buttons.destroy', ['route' => 'users'])
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

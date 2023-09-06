@@ -9,6 +9,7 @@
             <div class="title_left">
                 <h3>Список отзывов</h3>
             </div>
+            @include('parts.buttons.create', ['route' => 'reviews'])
         </div>
 
         <div class="row" style="display: block;">
@@ -29,10 +30,14 @@
                             @foreach($data as $item)
                                 <tr class="even pointer">
                                     <td>{{ $item->id }}</td>
-                                    <td>{{ $item->user->fio }}</td>
-                                    <td>{{ $item->product?->title }}</td>
+                                    <td>{{ $item->user ? $item->user->fio : 'Пользователь не найден' }}</td>
+                                    <td>{{ $item->product?->name }}</td>
                                     <td>{{ $item->title }}</td>
                                     <td>{{ $item->text }}</td>
+                                    <td class="">
+                                        @include('parts.buttons.edit', ['route' => 'reviews'])
+                                        @include('parts.buttons.destroy', ['route' => 'reviews'])
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>

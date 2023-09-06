@@ -7,8 +7,9 @@
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Список объявлений</h3>
+                <h3>Список обратной связи</h3> 
             </div>
+            @include('parts.buttons.create', ['route' => 'feedbacks']) 
         </div>
 
         <div class="row" style="display: block;">
@@ -21,7 +22,6 @@
                                 <th class="column-title">Пользователь</th>
                                 <th class="column-title">Заголовок</th>
                                 <th class="column-title">Текст</th>
-                                <th class="column-title">Способ связи</th>
                             </tr>
                         </thead>
 
@@ -29,17 +29,20 @@
                             @foreach($data as $item)
                                 <tr class="even pointer">
                                     <td>{{ $item->id }}</td>
-                                    <td>{{ $item->user->fio }}</td>
+                                    <td>{{ $item->user->fio ?? 'N/A' }}</td>
                                     <td>{{ $item->title }}</td>
                                     <td>{{ $item->text }}</td>
-                                    <td>{{ $item->communication_method }}</td>
+                                    <td class="">
+                                    @include('parts.buttons.edit', ['route' => 'feedbacks'])
+                                    @include('parts.buttons.destroy', ['route' => 'feedbacks'])
+                                </td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
 
                     <div class="d-flex justify-content-center">
-                        {!! $data->links() !!}
+                        {{ $data->links() }}
                     </div>
                 </div>
             </div>
